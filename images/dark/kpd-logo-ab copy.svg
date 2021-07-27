@@ -1,0 +1,8 @@
+<?xml version="1.0" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" cursor="default" style="zoom: 1;" transform="scale(0.72)" viewBox="-25 -25 864 840">
+<defs>
+  <mask id="mymask">
+    <text stroke="black" id="text1" style="outline-style:none;" stroke-width="15px" x="414.085602px" font-weight="700" text-rendering="geometricPrecision" font-family="Monaco" fill="black" font-size="250px" transform="" y="521.203125px" text-anchor="middle">KPD</text>
+    <text x="300" y="203" font-size="250px" font-family="Impact">blahblah</text>
+  </mask>
+</defs>
+<polygon points="407,1.50267 731.348816,157.700821 811.456299,508.674866 587,790.134216 227,790.134216 2.543671,508.674866 82.651207,157.700821" stroke="black" stroke-width="50" fill="black" mask="url(#mymask)"></polygon></svg>

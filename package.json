@@ -1,0 +1,170 @@
+{
+  "name": "kpd-vscode",
+  "publisher": "Skalar",
+  "displayName": "KPD",
+  "license": "MIT",
+  "description": "Kubernetes Powered Development",
+  "version": "2.2.0",
+  "repository": "Skalar/kpd",
+  "engines": {
+    "vscode": "^1.31.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@skalar"
+  },
+  "categories": [
+    "Other"
+  ],
+  "scripts": {
+    "lint": "eslint --ext ts src",
+    "vscode:prepublish": "yarn run compile",
+    "compile": "yarn build",
+    "build": "tsc",
+    "watch": "tsc -watch",
+    "test": "yarn run compile && node node_modules/vscode/bin/test",
+    "generate-query-types": "apollo client:codegen --localSchemaFile=./node_modules/@skalar/kpd/lib/server/graphql/schema.graphql --includes src/graphql/queries.ts,src/Controller.ts --target typescript --outputFlat ./src/graphql/types.ts",
+    "postinstall": "[ -f ./kpd.vsix ] && code --install-extension ./kpd.vsix; exit 0",
+    "postuninstall": "code --uninstall-extension Skalar.kpd-vscode; exit 0",
+    "prepack": "vsce package -o kpd.vsix; mv package.json package.json.orig; jq '.name = \"@skalar/kpd-vscode\" | .dependencies = {} | .devDependencies = {}' package.json.orig > package.json",
+    "postpack": "rm kpd.vsix",
+    "postpublish": "cp package.json.orig package.json; rm package.json.orig"
+  },
+  "files": [
+    "package.json",
+    "kpd.vsix",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@types/debounce-promise": "^3.1.1",
+    "@types/mocha": "^9.0.0",
+    "@types/ws": "^7.4.7",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "apollo": "^2.20.0",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5",
+    "vsce": "^1.75.0",
+    "vscode": "^1.1.36"
+  },
+  "dependencies": {
+    "@skalar/kpd": "^2.6.0-beta.15",
+    "@types/node": "^14",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-ws": "^1.0.19",
+    "byte-size": "^8.0.0",
+    "debounce-promise": "^3.1.2",
+    "graphql": "^15.5.1",
+    "graphql-tag": "^2.10.1",
+    "open": "^6.3.0",
+    "subscriptions-transport-ws": "^0.9.16",
+    "ws": "^7.1.2"
+  },
+  "activationEvents": [
+    "onView:extension.kpdView",
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "yamlValidation": [
+      {
+        "fileMatch": "kpd.yml",
+        "url": "./node_modules/@skalar/kpd/lib/config.schema.json"
+      },
+      {
+        "fileMatch": "kpd.yaml",
+        "url": "./node_modules/@skalar/kpd/lib/config.schema.json"
+      }
+    ],
+    "views": {
+      "kpdView": [
+        {
+          "id": "extension.kpdView",
+          "name": "",
+          "when": "kpdActivated"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "icon": "images/dark/kpd-logo-ab.svg",
+          "id": "kpdView",
+          "title": "Kubernetes Powered Development",
+          "when": "kpdActivated"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "kpd.showActions",
+        "title": "Show commands",
+        "icon": {
+          "light": "images/light/baseline-build.svg",
+          "dark": "images/dark/actions/enabled.svg"
+        },
+        "category": "KPD",
+        "when": "kpdIsConnected"
+      },
+      {
+        "command": "kpd.showActionsUnavailable",
+        "title": "KPD actions only available when connected",
+        "icon": {
+          "light": "images/light/baseline-build.svg",
+          "dark": "images/dark/actions/disabled.svg"
+        },
+        "category": "KPD",
+        "when": "!kpdIsConnected"
+      },
+      {
+        "command": "kpd.connectionDisconnected",
+        "title": "Disconnected from KPD server",
+        "icon": {
+          "light": "images/light/start.svg",
+          "dark": "images/dark/connection/disconnected.svg"
+        },
+        "category": "KPD",
+        "when": "kpdIsConnected"
+      },
+      {
+        "command": "kpd.connectionConnected",
+        "title": "Connected to KPD server",
+        "icon": {
+          "light": "images/light/start.svg",
+          "dark": "images/dark/connection/connected.svg"
+        },
+        "category": "KPD",
+        "when": "kpdIsConnected"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "kpd.connectionDisconnected",
+          "group": "navigation@1",
+          "when": "view == extension.kpdView && !kpdIsConnected"
+        },
+        {
+          "command": "kpd.connectionConnected",
+          "group": "navigation@1",
+          "when": "view == extension.kpdView && kpdIsConnected"
+        },
+        {
+          "command": "kpd.showActions",
+          "group": "navigation@2",
+          "when": "view == extension.kpdView && kpdIsConnected"
+        },
+        {
+          "command": "kpd.showActionsUnavailable",
+          "group": "navigation@2",
+          "when": "view == extension.kpdView && !kpdIsConnected"
+        }
+      ],
+      "view/item/context": []
+    }
+  },
+  "gitHead": "f815f3bfc5ffc5f8dccfc6f674c6235df218fa7f"
+}
