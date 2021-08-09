@@ -528,10 +528,10 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-4.0.1.tgz#d26729db850fa327b7cacc5522252194404226f5"
   integrity sha512-Qm9hBEBu18wt1PO2flE7LPb30BHMQt1eQgbV76YntdNk73XZGpn3izvGTYxbGgzXKgbCjiia0uxTd3aTNQrY/g==
 
-"@skalar/kpd@^2.6.0-beta.22":
-  version "2.6.0-beta.22"
-  resolved "https://npm.pkg.github.com/download/@skalar/kpd/2.6.0-beta.22/dd11113029f4c6f19267dc0cb9d05844af8a27de1bbf2c7859c3cd0b52bcfc2b#2eb3e8fe02e42539ed82c01d65fa8c6fe4905c19"
-  integrity sha512-vTTSWv9j9VU/k2dAg6BYAeCnTDSO8yzgOb7ghQQC1WzHdDqj4U7DJuXL5nsvocvK7ybNpjKsmOdLOaWWyItnwA==
+"@skalar/kpd@^3.0.0":
+  version "3.0.0"
+  resolved "https://npm.pkg.github.com/download/@skalar/kpd/3.0.0/a8655343668f0f0c506f5b55ad09311f6a38bc48bb181bb5951ac61f65e4094c#04564b0b530f1a86eaa3c15b09e2647dd70a76e1"
+  integrity sha512-0N1IkwK+7jc1L/KazfrmDbuVn/rSVv2MRDn4I3utwEC7syRVJ3uCGZYbReVRQTGzp/yfe4SXmVv1m/INcssAJw==
   dependencies:
     "@apollo/client" "^3.3.21"
     "@balena/dockerignore" "^1.0.2"
@@ -540,7 +540,7 @@
     ajv "^8.6.2"
     ansi-colors "^4.1.1"
     ansi-escapes "^4.3.0"
-    ansi-regex "^5.0.0"
+    ansi-regex "^6.0.0"
     apollo-server "^2.9.7"
     debounce-promise "^3.1.2"
     fb-watchman "^2.0.0"
@@ -1082,6 +1082,11 @@ ansi-regex@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.0.tgz#388539f55179bf39339c81af30a654d69f87cb75"
   integrity sha512-bY6fj56OUQ0hU1KjFNDQuJFezqKdrAyFdIevADiqrWHwSlbmBNMHp5ak2f40Pm8JTFyM2mqxkG6ngkHO11f/lg==
+
+ansi-regex@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-6.0.0.tgz#ecc7f5933cbe5ac7b33e209a5ff409ab1669c6b2"
+  integrity sha512-tAaOSrWCHF+1Ear1Z4wnJCXA9GGox4K6Ic85a5qalES2aeEwQGr7UC93mwef49536PkCYjzkp0zIxfFvexJ6zQ==
 
 ansi-styles@^2.2.1:
   version "2.2.1"
