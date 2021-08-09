@@ -1,7 +1,7 @@
 import {TreeItemCollapsibleState} from 'vscode'
 import {VSCodeKPDQuery_images} from '../../graphql/types'
 import {TreeDataComponent} from '../TreeDataComponent'
-import {byteSize} from 'byte-size'
+import byteSize from 'byte-size'
 
 export class Image extends TreeDataComponent<VSCodeKPDQuery_images> {
   get label() {
